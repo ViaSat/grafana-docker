@@ -2,9 +2,6 @@ FROM debian:jessie
 
 ARG DOWNLOAD_URL
 
-ARG GRAFANA_VERSION
-ENV GRAFANA_VERSION
-
 RUN apt-get update && \
     apt-get -y --no-install-recommends install libfontconfig curl ca-certificates && \
     apt-get clean && \
@@ -16,6 +13,9 @@ RUN apt-get update && \
     apt-get remove -y curl && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
+
+ARG GRAFANA_VERSION
+ENV GRAFANA_VERSION GRAFANA_VERSION
 
 VOLUME ["/var/lib/grafana", "/var/log/grafana", "/etc/grafana"]
 
